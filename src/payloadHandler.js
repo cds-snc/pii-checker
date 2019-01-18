@@ -19,7 +19,7 @@ export const handle = async event => {
     const result = await requestScan(url);
 
     if (!result) {
-      //create issue
+      // create issue
       await createIssue(body);
     }
 
