@@ -1,5 +1,5 @@
 "use strict";
-import octokit, { validateDeployment, requestScan, notify } from "./lib";
+import octokit, { validateDeployment, requestScan, createIssue } from "./lib";
 import { webhook } from "./__mocks__/deploymentWebhook";
 
 export const localPayload = async () => {
@@ -15,14 +15,12 @@ const init = event => {
 export const handle = async event => {
   try {
     const body = init(event);
-    const url = "https://digital.canada.ca";
+    const url = body.deployment.payload.web_url;
     const result = await requestScan(url);
 
     if (!result) {
-      await notify(body, octokit, {
-        state: "error",
-        description: "Failed to validate Personally identifiable information"
-      });
+      //create issue
+      await createIssue(body);
     }
 
     const msg = "Personally identifiable information check passed";
