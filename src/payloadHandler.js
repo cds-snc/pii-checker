@@ -12,8 +12,10 @@ const init = event => {
   return body;
 };
 
-const issueMessage =
-  "Personally identifiable information check failed.  Please ensure the Google Analtics anonymize IP setting is set to true.";
+const issueTemplate = {
+  title: "Personally identifiable information check failed",
+  body: "Please ensure the Google Analtics anonymize IP setting is set to true."
+};
 
 export const handle = async event => {
   try {
@@ -24,7 +26,7 @@ export const handle = async event => {
 
     if (!result) {
       // create issue
-      await createIssue(body, issueMessage);
+      await createIssue(body, issueTemplate);
       return `${msg} failed`;
     }
     return `${msg} passed`;
