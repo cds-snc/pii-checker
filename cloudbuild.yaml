@@ -20,7 +20,7 @@ steps:
       - --location=global
       - --project=pii-checker
       - --keyring=deploy
-      - --key=keyfile
+      - --key=firestore
   - name: "gcr.io/cloud-builders/gcloud"
     id: "decrypt .env"
     args:
