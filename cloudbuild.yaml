@@ -40,7 +40,7 @@ steps:
       - --location=global
       - --keyring=deploy
       - --key=github
-  - name: "gcr.io/cloud-builders/yarn"
+  - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["decrypt firestore", "decrypt .env", "decrypt github"]
     entrypoint: "bash"
     args:
