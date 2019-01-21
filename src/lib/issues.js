@@ -12,7 +12,6 @@ const generateJwtToken = async () => {
   const file = path.resolve(__dirname, `../../${GITHUB_PEM}`);
 
   const result = await getFile(file);
-
   return jsonwebtoken.sign(
     {
       iat: Math.floor(new Date() / 1000),

@@ -11,8 +11,8 @@ const checkTrackers = async () => {
       });
       resolve(aips);
     } catch (e) {
-      // todo determine how to handle GA not being setup
-      resolve("something happened", e.message);
+      // if GA is not installed assume it is not an issue ¯\_(ツ)_/¯
+      resolve([true]);
     }
   });
 };
@@ -34,6 +34,7 @@ const allTrue = result => {
 };
 
 export const requestScan = async url => {
+  console.log("URL", url);
   try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
