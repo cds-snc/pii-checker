@@ -11,12 +11,17 @@ const checkTrackers = async () => {
       });
       resolve(aips);
     } catch (e) {
+      // todo determine how to handle GA not being setup
       resolve("something happened", e.message);
     }
   });
 };
 
 const allTrue = result => {
+  if (!Array.isArray(result)) {
+    return false;
+  }
+
   if (
     result.every(currentValue => {
       return currentValue === true;

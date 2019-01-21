@@ -10,11 +10,10 @@ const trackPii = async (request, response) => {
 // used for local testing
 (async () => {
   const argv = require("minimist")(process.argv.slice(2));
-  const { pr } = argv;
+  const { deploy } = argv;
 
-  if (pr) {
-    const result = await localPayload();
-    console.log(result);
+  if (deploy) {
+    await localPayload();
   }
 })();
 

@@ -9,7 +9,6 @@ steps:
       [
         "FIRESTORE_URL=''",
         "GITHUB_TOKEN=abcd",
-        "LIGHTHOUSE_URL=''"
       ]
   - name: "gcr.io/cloud-builders/gcloud"
     id: "decrypt keyfile"

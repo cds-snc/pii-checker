@@ -44,7 +44,7 @@ const authenticate = async installationId => {
   return client;
 };
 
-export const createIssue = async body => {
+export const createIssue = async (body, issueMsg) => {
   const id = body.installation.id;
   const repoOwner = body.repository.owner.login;
   const repoName = body.repository.name;
@@ -52,10 +52,8 @@ export const createIssue = async body => {
   const issueObj = {
     owner: repoOwner,
     repo: repoName,
-    title: `Some issue ${Date.now()}`
+    title: `${issueMsg} ${Date.now()}`
   };
-
-  console.log(issueObj)
 
   const result = await client.issues.create(issueObj);
 

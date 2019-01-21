@@ -1,12 +1,12 @@
 {
   "name": "pii-checker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "",
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "dev": "NODE_ENV=dev node src/index.js --pr",
+    "dev": "NODE_ENV=dev node src/index.js --deploy",
     "test": "jest"
   },
   "repository": {
@@ -31,7 +31,6 @@
     "dotenv-safe": "^6.1.0",
     "esm": "^3.1.0",
     "jsonwebtoken": "^8.4.0",
-    "lighthouse": "^4.0.0-alpha.2-3.2.1",
     "puppeteer": "^1.11.0"
   },
   "devDependencies": {
