@@ -21,9 +21,12 @@ switch (process.env.NODE_ENV) {
 
 const defaultPayload = { repo: "", issue: false, timestamp: null };
 
-module.exports.loadFromFirestore = async repo => {
+module.exports.loadFromFirestore = async (repo, environment) => {
   const reposRef = db.collection(collection);
-  const branchQuery = reposRef.where("repo", "==", repo).limit(1);
+  const branchQuery = reposRef
+    .where("repo", "==", repo)
+    .where("environment", "==", environment)
+    .limit(1);
 
   const branchCollection = await branchQuery.get();
   let branchItems = [];

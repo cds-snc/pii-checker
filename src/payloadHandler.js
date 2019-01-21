@@ -29,10 +29,11 @@ export const handle = async event => {
   try {
     const body = init(event);
     const url = body.deployment.payload.web_url;
+    const environment = body.deployment.environment;
 
     /* Check to see if issue has already been created */
     const repoName = body.repository.name;
-    const issueResult = await loadFromFirestore(repoName);
+    const issueResult = await loadFromFirestore(repoName, environment);
 
     if (issueResult.issue) {
       return `Personally identifiable information issue already posted`;
@@ -48,7 +49,8 @@ export const handle = async event => {
       // save to the DB
       await saveToFirestore({
         repo: repoName,
-        issue: true
+        issue: true,
+        environment: environment
       });
       return `${msg} failed`;
     }
