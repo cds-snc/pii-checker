@@ -7,18 +7,18 @@ steps:
     args: ["test"]
     env:
       [
-        "FIRESTORE_URL=''",
-        "GITHUB_TOKEN=abcd",
+        "GITHUB_PEM='github.pem'",
+        "ISSUER_ID=abcd",
       ]
   - name: "gcr.io/cloud-builders/gcloud"
-    id: "decrypt keyfile"
+    id: "decrypt firestore"
     args:
       - kms
       - decrypt
-      - --ciphertext-file=keyfile.json.enc
-      - --plaintext-file=keyfile.json
+      - --ciphertext-file=firestore.json.enc
+      - --plaintext-file=firestore.json
       - --location=global
-      - --project=tti-tools
+      - --project=pii-checker
       - --keyring=deploy
       - --key=keyfile
   - name: "gcr.io/cloud-builders/gcloud"
@@ -29,14 +29,25 @@ steps:
       - --ciphertext-file=.env.enc
       - --plaintext-file=.env
       - --location=global
-      - --project=tti-tools
+      - --project=pii-checker
       - --keyring=deploy
       - --key=env
+  - name: "gcr.io/cloud-builders/gcloud"
+    id: "decrypt github"
+    args:
+      - kms
+      - decrypt
+      - --ciphertext-file=github.pem.enc
+      - --plaintext-file=github.pem
+      - --location=global
+      - --project=pii-checker
+      - --keyring=deploy
+      - --key=github
   - name: "gcr.io/cloud-builders/yarn"
-    waitFor: ["decrypt keyfile", "decrypt .env"]
+    waitFor: ["decrypt firestore", "decrypt .env", "decrypt github"]
     entrypoint: "bash"
     args:
       - "-c"
       - |
-        if [[ "$BRANCH_NAME" == "master" ]]; then yarn global add serverless && serverless deploy; else exit 0; fi
+        if [[ "$BRANCH_NAME" != "master" ]]; then gcloud functions deploy piiCheck --runtime nodejs8 --memory=1024M --timeout=90s --trigger-http; else exit 0; fi
 
