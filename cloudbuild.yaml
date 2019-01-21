@@ -46,5 +46,5 @@ steps:
     args:
       - "-c"
       - |
-        if [[ "$BRANCH_NAME" != "master" ]]; then gcloud functions deploy piiCheck --runtime nodejs8 --memory=1024M --timeout=90s --trigger-http; else exit 0; fi
+        if [[ "$BRANCH_NAME" != "master" ]]; then gcloud functions deploy trackPii --runtime nodejs8 --memory=1024M --timeout=90s --trigger-http; else exit 0; fi
 
