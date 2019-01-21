@@ -34,6 +34,7 @@
     "firebase-functions": "^2.1.0",
     "jsonwebtoken": "^8.4.0",
     "minimist": "^1.2.0",
+    "mock-cloud-firestore": "^0.9.1",
     "puppeteer": "^1.11.0"
   },
   "devDependencies": {

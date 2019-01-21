@@ -32,7 +32,7 @@ export const handle = async event => {
     const environment = body.deployment.environment;
 
     /* Check to see if issue has already been created */
-    const repoName = body.repository.name;
+    const repoName = body.repository.full_name;
     const issueResult = await loadFromFirestore(repoName, environment);
 
     if (issueResult.issue) {
