@@ -1,6 +1,5 @@
 import octokit from "@octokit/rest";
 import jsonwebtoken from "jsonwebtoken";
-
 import path from "path";
 import { getFile } from "../lib/getFile";
 

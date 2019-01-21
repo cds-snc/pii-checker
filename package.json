@@ -1,6 +1,6 @@
 {
   "name": "pii-checker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "author": "",
   "license": "MIT",
@@ -27,9 +27,10 @@
     }
   },
   "dependencies": {
-    "@octokit/rest": "^16.10.0",
+    "@octokit/rest": "^16.11.0",
     "dotenv-safe": "^6.1.0",
-    "esm": "^3.1.0",
+    "esm": "^3.1.1",
+    "firebase-admin": "^6.5.0",
     "jsonwebtoken": "^8.4.0",
     "puppeteer": "^1.11.0"
   },
@@ -40,8 +41,8 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "body-parser": "^1.18.3",
-    "eslint": "^5.11.1",
-    "eslint-config-prettier": "^3.5.0",
+    "eslint": "^5.12.1",
+    "eslint-config-prettier": "^3.6.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^22.1.3",

@@ -3,7 +3,8 @@ const handle = require("./payloadHandler").handle;
 const localPayload = require("./payloadHandler").localPayload;
 
 const trackPii = async (request, response) => {
-  await handle(request);
+  const result = await handle(request);
+  console.log(result);
   response.status(200).send("Processed deployment.");
 };
 
