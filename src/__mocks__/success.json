@@ -41,7 +41,7 @@
       "ref": "b34a0d67f040173f8f03572d9d37cfafae201924",
       "task": "deploy",
       "payload": {
-        "web_url": "https://bundle-size-tracker-demo-pr-21.herokuapp.com/"
+        "web_url": "https://reactjs.org"
       },
       "original_environment": "bundle-size-tracker-demo-pr-21",
       "environment": "bundle-size-tracker-demo-pr-21",

@@ -4838,6 +4838,11 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
+mock-cloud-firestore@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/mock-cloud-firestore/-/mock-cloud-firestore-0.9.1.tgz#33412285b5c1c206b1dd757dd27df183aec234f7"
+  integrity sha512-YXtBWTDR0udgFLnR/mxadYRXdOSNzapvFge30cyKVfZGged5tHN06FoWF8D2suFIhCE8AsJ4ErplmORFCuS1mw==
+
 modelo@^4.2.0:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/modelo/-/modelo-4.2.3.tgz#b278588a4db87fc1e5107ae3a277c0876f38d894"

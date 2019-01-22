@@ -13,6 +13,12 @@ switch (process.env.NODE_ENV) {
 
     db = admin.firestore();
     break;
+  case "test":
+    const MockCloudFirestore = require("mock-cloud-firestore");
+    const { fixtureData } = require("../__mocks__/firestore.js");
+    let firebase = new MockCloudFirestore(fixtureData);
+    db = firebase.firestore();
+    break;
   default:
     const functions = require("firebase-functions");
     admin.initializeApp(functions.config().firebase);

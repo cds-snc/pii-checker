@@ -1,4 +1,3 @@
-import octokit from "@octokit/rest";
 import jsonwebtoken from "jsonwebtoken";
 import path from "path";
 import { getFile } from "../lib/getFile";
@@ -23,8 +22,7 @@ const generateJwtToken = async () => {
   );
 };
 
-const authenticate = async installationId => {
-  const client = octokit();
+const authenticate = async (client, installationId) => {
   const jwtToken = await generateJwtToken();
 
   client.authenticate({
@@ -42,11 +40,11 @@ const authenticate = async installationId => {
   return client;
 };
 
-export const createIssue = async (body, issue) => {
+export const createIssue = async (octokit, body, issue) => {
   const id = body.installation.id;
   const repoOwner = body.repository.owner.login;
   const repoName = body.repository.name;
-  const client = await authenticate(id);
+  const client = await authenticate(octokit, id);
   const issueObj = {
     owner: repoOwner,
     repo: repoName,

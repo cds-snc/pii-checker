@@ -1,5 +1,5 @@
 "use strict";
-import {
+import octokit, {
   validateDeployment,
   requestScan,
   createIssue,
@@ -32,7 +32,7 @@ export const handle = async event => {
     const environment = body.deployment.environment;
 
     /* Check to see if issue has already been created */
-    const repoName = body.repository.name;
+    const repoName = body.repository.full_name;
     const issueResult = await loadFromFirestore(repoName, environment);
 
     if (issueResult.issue) {
@@ -45,7 +45,7 @@ export const handle = async event => {
 
     if (!result) {
       // create issue
-      await createIssue(body, issueTemplate);
+      await createIssue(octokit, body, issueTemplate);
       // save to the DB
       await saveToFirestore({
         repo: repoName,
