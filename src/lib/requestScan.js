@@ -33,11 +33,13 @@ const allTrue = result => {
   return false;
 };
 
-export const requestScan = async url => {
+export const requestScan = async (url, useGlobalPuppeteer = false) => {
   console.log("URL", url);
   try {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+    const browser = useGlobalPuppeteer
+      ? await puppeteer.launch()
+      : global.browser;
+    const page = useGlobalPuppeteer ? await browser.newPage() : global.page;
 
     await page.setExtraHTTPHeaders({
       "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
