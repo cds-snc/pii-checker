@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 
-const checkTrackers = async () => {
+const checkTrackers = () => {
   return new Promise((resolve, reject) => {
     try {
       const trackers = ga.getAll(); // eslint-disable-line no-undef
@@ -17,7 +17,7 @@ const checkTrackers = async () => {
   });
 };
 
-const allTrue = result => {
+export const allTrue = result => {
   if (!Array.isArray(result)) {
     return false;
   }
@@ -36,10 +36,12 @@ const allTrue = result => {
 export const requestScan = async (url, useGlobalPuppeteer = false) => {
   console.log("URL", url);
   try {
-    const browser = useGlobalPuppeteer
+    const browser = !useGlobalPuppeteer
       ? await puppeteer.launch()
-      : global.browser;
-    const page = useGlobalPuppeteer ? await browser.newPage() : global.page;
+      : useGlobalPuppeteer.browser;
+    const page = !useGlobalPuppeteer
+      ? await browser.newPage()
+      : useGlobalPuppeteer.page;
 
     await page.setExtraHTTPHeaders({
       "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
@@ -51,7 +53,10 @@ export const requestScan = async (url, useGlobalPuppeteer = false) => {
 
     await page.goto(url);
     const result = await page.evaluate(checkTrackers);
-    await browser.close();
+    if (!useGlobalPuppeteer) {
+      await browser.close();
+    }
+
     return allTrue(result);
   } catch (e) {
     console.log("something happened");
