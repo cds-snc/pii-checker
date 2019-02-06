@@ -4,5 +4,11 @@ module.exports = {
     "jest/globals": true
   },
   parser: "babel-eslint",
-  plugins: ["jest"]
+  plugins: ["jest"],
+  globals: {
+    page: true,
+    browser: true,
+    context: true,
+    jestPuppeteer: true
+  }
 };
