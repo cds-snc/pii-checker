@@ -20,10 +20,10 @@ const init = event => {
   return body;
 };
 
-const issueTemplate = {
-  title: "Personally identifiable information check failed",
+const issueTemplate = environment => ({
+  title: `Personally identifiable information check failed in ${environment}`,
   body: "Please ensure the Google Analtics anonymize IP setting is set to true."
-};
+});
 
 export const handle = async event => {
   try {
@@ -45,7 +45,7 @@ export const handle = async event => {
 
     if (!result) {
       // create issue
-      await createIssue(octokit, body, issueTemplate);
+      await createIssue(octokit, body, issueTemplate(environment));
       // save to the DB
       await saveToFirestore({
         repo: repoName,
