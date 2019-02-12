@@ -1,15 +1,4 @@
 steps:
-  - name: "gcr.io/cloud-builders/yarn"
-    id: "install"
-    args: ["install"]
-  - name: "gcr.io/cloud-builders/yarn"
-    id: "test"
-    args: ["test"]
-    env:
-      [
-        "GITHUB_PEM='github.pem'",
-        "ISSUER_ID=abcd",
-      ]
   - name: "gcr.io/cloud-builders/gcloud"
     id: "decrypt firestore"
     args:
@@ -47,4 +36,3 @@ steps:
       - "-c"
       - |
         if [[ "$BRANCH_NAME" == "master" ]]; then gcloud functions deploy trackPii --runtime nodejs8 --memory=1024M --timeout=90s --trigger-http; else exit 0; fi
-
