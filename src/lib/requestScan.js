@@ -37,7 +37,9 @@ export const requestScan = async (url, useGlobalPuppeteer = false) => {
   console.log("URL", url);
   try {
     const browser = !useGlobalPuppeteer
-      ? await puppeteer.launch()
+      ? await puppeteer.launch({
+          args: ["--no-sandbox", "--disable-setuid-sandbox"]
+        })
       : useGlobalPuppeteer.browser;
     const page = !useGlobalPuppeteer
       ? await browser.newPage()
