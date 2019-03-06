@@ -1,4 +1,5 @@
 # Personal identifiable information checking
+[![Maintainability](https://api.codeclimate.com/v1/badges/ccf646122e1d06265d4e/maintainability)](https://codeclimate.com/github/cds-snc/pii-checker/maintainability)
 
 ### Purpose
 
