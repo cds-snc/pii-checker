@@ -7,7 +7,7 @@ The purpose of this tool is to check if an application is anonymizing IPs when s
 
 ### How do I use it?
 
-All you need to do is install the [GitHub application](https://github.com/apps/cds-snc-pii-checker)
+All you need to do is install the [GitHub application](https://github.com/apps/cds-snc-pii-checker).
 You also need to be using a `deployment` implementation on GitHub. (ex. [Heroku's Review apps](https://devcenter.heroku.com/articles/github-integration-review-apps)).
 
 ### Work flow
