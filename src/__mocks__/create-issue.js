@@ -90,7 +90,7 @@ export const createIssueResp = {
       closed_at: null,
       author_association: "NONE",
       body:
-        "Please ensure the Google Analtics anonymize IP setting is set to true.",
+        "Please ensure the Google Analytics anonymize IP setting is set to true.",
       closed_by: null
     }
   }
