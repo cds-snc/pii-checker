@@ -63,6 +63,7 @@ export const requestScan = async (url, useGlobalPuppeteer = false) => {
   } catch (e) {
     console.log("something happened");
     console.log(e.message);
-    return false;
+    // in this case we can't determine so don't flag ¯\_(ツ)_/¯
+    return [true];
   }
 };
