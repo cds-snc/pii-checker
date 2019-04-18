@@ -22,7 +22,7 @@ const init = event => {
 
 const issueTemplate = environment => ({
   title: `Personally identifiable information check failed in ${environment}`,
-  body: "Please ensure the Google Analtics anonymize IP setting is set to true."
+  body: "Please ensure the Google Analytics anonymize IP setting is set to true."
 });
 
 export const handle = async event => {
